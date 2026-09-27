@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+
+# Local API secrets and credentials
+secrets.toml
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# Local Python environment and generated files
+venv/
+.venv/
+__pycache__/
