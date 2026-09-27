@@ -116,13 +116,31 @@ python -m streamlit run app.py
 
 Streamlit will print a local URL to open in your browser.
 
-## Screenshots / Demo
+## Screenshots
 
-Screenshots are not currently available. Add genuine application screenshots here when they are captured:
+### 1. Main Application
 
-- **Contract input:** _Screenshot placeholder — not yet captured._
-- **Analysis results:** _Screenshot placeholder — not yet captured._
-- **PDF report:** _Screenshot placeholder — not yet captured._
+The contract input screen for entering or uploading an agreement.
+
+![Main Application](screenshots/Raksha-Audit_Home.png)
+
+### 2. AI Contract Analysis
+
+The analysis view with the overall contract risk assessment and executive summary.
+
+![AI Contract Analysis](screenshots/Raksha-Audit-Analysis.png)
+
+### 3. Risk Clause Analysis
+
+A flagged clause with its risk explanation and suggested alternative.
+
+![Risk Clause Analysis](screenshots/Raksha-Audit-Risk-Clause.png)
+
+### 4. Generated PDF Report
+
+Example of the generated contract review PDF report.
+
+![Generated PDF Report](screenshots/Raksha-Audit-pdf.png)
 
 ## Limitations
 
