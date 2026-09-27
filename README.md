@@ -1,97 +1,149 @@
 # Raksha Audit
 
-Raksha Audit is an AI-assisted contract review application designed for founders, freelancers, and early-stage teams who need an easier way to spot risky contract language before signing.
+**AI-powered contract risk analysis and audit assistant.**
 
-## Overview
+Raksha Audit helps founders, freelancers, and small teams review contract language by surfacing potentially risky clauses and providing plain-language explanations and possible revisions.
 
-The app accepts a contract upload or pasted text, analyzes the agreement for founder-hostile or high-risk clauses, and returns a clear summary with red flags, explanations, and safer alternatives. It is intended to support early contract review, not replace legal advice from a qualified lawyer.
+## Problem
+
+Manually reviewing a contract can make it difficult to quickly spot clauses that may create financial, intellectual-property, or operational risks. Important terms can be easy to overlook, especially when agreements are lengthy or written in unfamiliar legal language.
+
+## Solution
+
+Raksha Audit accepts pasted contract text or uploaded PDF/TXT files, extracts readable text when needed, and submits the contract for AI-assisted analysis using the Google Gemini API. It presents an overall risk assessment, identifies potential red-flag clauses, explains the associated concerns, suggests possible fixes, and can generate a PDF report for review or record keeping.
 
 ## Features
 
-- Upload PDF or TXT contracts
-- Extract readable text safely from supported files
-- Paste contract text manually when needed
-- Review overall risk score: High, Medium, or Low
-- Identify risky clause categories including:
-  - intellectual property
-  - payment terms
-  - termination
-  - confidentiality
-  - liability
-  - indemnification
-  - non-compete / non-solicitation
-  - data and privacy
-  - dispute resolution
-  - automatic renewal
-- Show clause text, explanation, and safer alternative language
-- Export the analysis as a PDF report
-- Gracefully handle invalid files, empty documents, and API errors
+- Analyze contract text pasted into the application
+- Upload PDF and TXT contracts
+- AI-assisted contract risk analysis
+- Overall risk assessment
+- Red-flag clause identification
+- Plain-language risk explanations
+- Suggested fixes and safer alternatives
+- PDF report generation
+- Error handling for invalid or unreadable files and Gemini API errors or rate limits
 
 ## Technology Stack
 
 - Python
 - Streamlit
-- Google Gemini API
-- PyPDF
+- Google Gemini API (`google-genai`)
+- PyPDF (`pypdf`)
 - ReportLab
 - python-dotenv
 
-## Setup Instructions
+## Application Workflow
 
-1. Create and activate a virtual environment:
+**Contract Input → Text Extraction → Gemini Analysis → Risk Results → Suggested Fixes → PDF Report**
 
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate
-   ```
+1. Paste contract text or upload a PDF/TXT file.
+2. Review the extracted or entered text.
+3. Select **Scan contract** to request AI-assisted analysis.
+4. Review the risk assessment, summary, flagged clauses, explanations, and suggested fixes.
+5. Export the results as a PDF report.
 
-2. Install dependencies:
+## Project Structure
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+| File | Purpose |
+| --- | --- |
+| `app.py` | Streamlit interface, contract text extraction, Gemini analysis, and PDF report generation. |
+| `requirements.txt` | Python dependencies required to run the application. |
+| `.env.example` | Example environment configuration containing a placeholder API key value. |
+| `.gitignore` | Excludes local secrets, virtual environments, and generated Python files from Git. |
+| `README.md` | Project overview, setup instructions, workflow, and documentation. |
 
-3. Create a local environment file from the example:
+## Setup
 
-   ```bash
-   copy .env.example .env
-   ```
+### 1. Clone the repository
 
-4. Add your Gemini API key in `.env`:
+```bash
+git clone https://github.com/thatikondayamini1-spec/Raksha-Audit.git
+cd Raksha-Audit
+```
 
-   ```text
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
+### 2. Create and activate a virtual environment
 
-5. Run the app:
+**Windows PowerShell:**
 
-   ```bash
-   streamlit run app.py
-   ```
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
-## Environment Variable Setup
+**macOS/Linux:**
 
-The app reads the Gemini key from environment variables using `python-dotenv`. Do not hard-code your API key in source files.
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Example `.env`:
+### 3. Install dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 4. Configure the Gemini API key
+
+Create a local `.env` file from the example:
+
+**Windows PowerShell:**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS/Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and replace the placeholder with a Gemini API key:
 
 ```text
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-## Example Workflow
+Keep the key private. The `.env` file is excluded from Git; do not commit API keys or other secrets.
 
-1. Open the app in the browser.
-2. Upload a PDF or TXT contract.
-3. Review the extracted text and edit if needed.
-4. Click "Scan Contract".
-5. Review the risk score, executive summary, and flagged clauses.
-6. Download the analysis report as a PDF if needed.
+### 5. Run the application
 
-## Current Limitations
+```bash
+python -m streamlit run app.py
+```
 
-Live analysis requires a valid Gemini API key and depends on the Gemini API's service availability and account quota. Rate limits, daily quota exhaustion, or temporary service errors can prevent analysis until the quota resets or the service recovers. Live browser analysis has not been verified in the current test session because the API returned a quota-exhaustion response.
+Streamlit will print a local URL to open in your browser.
 
-## Legal Disclaimer
+## Screenshots / Demo
 
-Raksha Audit is an AI-assisted contract review tool and is not a substitute for advice from a qualified lawyer or other legal professional. It helps identify possible issues in a contract but does not provide legal advice or guarantee a contract is enforceable or fair.
+Screenshots are not currently available. Add genuine application screenshots here when they are captured:
+
+- **Contract input:** _Screenshot placeholder — not yet captured._
+- **Analysis results:** _Screenshot placeholder — not yet captured._
+- **PDF report:** _Screenshot placeholder — not yet captured._
+
+## Limitations
+
+- Live analysis requires a valid Gemini API key.
+- Gemini API availability, rate limits, and account quota can affect whether an analysis request completes.
+- Results may be incomplete or inaccurate and should be reviewed by a qualified legal professional.
+
+## Future Improvements
+
+- Add automated tests for contract parsing and report generation.
+- Improve support for scanned PDFs that require optical character recognition.
+- Add configurable analysis preferences for different contract types.
+
+These are potential future enhancements and are not presented as existing functionality.
+
+## Disclaimer
+
+Raksha Audit is an AI-assisted contract issue-spotting tool. It is not a substitute for professional legal advice, does not establish an attorney-client relationship, and does not guarantee that a contract is fair, enforceable, or suitable for a particular situation. Consult a qualified legal professional before making decisions about a contract.
+
+## Author
+
+**Yamini Thatikonda**
+
+B.Tech CSE
